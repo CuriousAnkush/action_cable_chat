@@ -4,7 +4,8 @@ class ChatRoomsController < ApplicationController
   end
 
   def show
-    @room = ChatRoom.includes(:messages).find(id)
+    @room = ChatRoom.includes(:messages).find(params[:id])
+    @message = Message.new
   end
 
   def create
@@ -24,7 +25,7 @@ class ChatRoomsController < ApplicationController
   private
 
   def chat_room_params
-    params.require(:chat_rooms).permit(:title)
+    params.require(:chat_room).permit(:title)
   end
 
 end
